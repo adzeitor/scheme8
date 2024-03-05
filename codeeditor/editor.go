@@ -111,7 +111,7 @@ func (editor *Editor) BackwardDeleteChar() {
 
 	// at the beginning of line
 	// attach to previous and delete cur line
-	if editor.Column() == 0 {
+	if editor.IsBeginningOfLine() {
 		editor.deleteLine()
 		editor.MoveToPrevLine()
 		editor.MoveCursorToEndOfLine()

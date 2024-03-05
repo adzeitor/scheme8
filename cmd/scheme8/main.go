@@ -3,7 +3,6 @@ package main
 
 import (
 	"math/rand"
-	"os"
 	"time"
 
 	"github.com/veandco/go-sdl2/sdl"
@@ -70,11 +69,11 @@ func main() {
 	}
 	env := environmentWithSDL(ctx)
 
-	source, err := os.ReadFile("scheme8.scm")
-	if err != nil {
-		panic(err)
-	}
-	_, env = scheme.EvalBuffer(string(source), env)
+	//source, err := os.ReadFile("scheme8.scm")
+	//if err != nil {
+	//	panic(err)
+	//}
+	//_, env = scheme.EvalBuffer(string(source), env)
 	for running {
 		for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
 			switch e := event.(type) {
@@ -94,7 +93,7 @@ func main() {
 				if ctx.Keys[sdl.SCANCODE_ESCAPE] {
 					ctx.Editor = !ctx.Editor
 					if !ctx.Editor {
-						_, env = scheme.EvalInEnvironment(editor.Text(), env)
+						_, env = scheme.EvalBuffer(editor.Text(), env)
 					}
 				}
 				if e.State == sdl.PRESSED {
